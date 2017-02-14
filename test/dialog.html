@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>nebula-dialog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../core.js/client/shim.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="../nebula-dialog.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <nebula-dialog></nebula-dialog>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('basic', function() {
+        var el
+        setup(function() {
+          el = fixture('basic')
+        })
+        test('element is created', function() {
+          assert.equal(el.is, 'nebula-dialog')
+        })
+        test('dialog is displayed and canceled', function(done) {
+          el.show().then(function(result) {
+            assert.isUndefined(el.result)
+            assert.isUndefined(result)
+            done()
+          })
+          setTimeout(function() {
+            el.cancel()
+          }, 1000)
+        })
+        test('dialog is displayed and closed', function(done) {
+          el.show().then(function(result) {
+            assert.isTrue(el.result)
+            assert.isTrue(result)
+            done()
+          })
+          setTimeout(function() {
+            el.close(true)
+          }, 1000)
+        })
+      })
+    </script>
+  </body>
+</html>
