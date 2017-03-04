@@ -5,7 +5,6 @@ This code may be used under the terms found in LICENSE.md of this repository.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../nebula-style-attributes-behavior/nebula-style-attributes-behavior.html">
 <link rel="import" href="nebula-dialog-styles.html">
 <link rel="import" href="nebula-dialog-behavior.html">
 
@@ -36,18 +35,25 @@ By default, the dialog visibility is hidden. To open the dialog you can set the 
 
 ## Style
 
-You can style the component using the following CSS custom properties and mixins:
+Theme variables are used to style key design goals for the element and affect multiple styles (border, background color) across multiple states.
 
-Custom property | Description | Default
-:--- | :--- | :---
-`--nebula-dialog-backdrop-color` | The background color of the host element. | hsla(0, 0%, 0%, 0.6)
-`--nebula-dialog-transition-duration` | The duration of the opening/closing animation. | 0.4s
-`--nebula-dialog-z-index` | The stacking order of the element. | 9999
-`--nebula-dialog` | Mixin applied to the host element.
+Custom property | Description
+:--- | :---
+`--nebula-dialog-backdrop-color` | The background color of the base element. | hsla(0, 0%, 0%, 0.6)
+`--nebula-dialog-transition-duration` | The duration of the default scale/fade transitions. | 0.25s
 
-The following styles can also be set as attributes on the element:
+For more granular control, the following mixins can be used to style each state of the element:
 
-- `backdrop-color`
+Custom property | Description
+:--- | :---
+`--nebula-dialog` | Mixin applied to base element.
+`--nebula-dialog-opened` | Mixin applied to element when opened.
+
+The element also inherits default values from the following global theme styles. If a global theme variable has not been set, it will use the local default.
+
+Custom property | Description
+:--- | :---
+`--nebula-ui-backdrop-color` | The background color of the base element. 
 
 @demo demo/index.html
 -->
@@ -59,20 +65,14 @@ The following styles can also be set as attributes on the element:
         @apply --nebula-dialog;
       }
     </style>
-    <div class="dialog">
-      <slot></slot>
-    </div>
+    <slot></slot>
   </template >
   <script>
     Polymer({
       is: 'nebula-dialog',
       behaviors: [
-        Nebula.StyleAttributesBehavior,
         Nebula.DialogBehavior
-      ],
-      _styleAttributes: {
-        'backdrop-color': '--nebula-dialog-backdrop-color'
-      }
+      ]
     })
   </script>
 </dom-module>

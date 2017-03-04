@@ -1,6 +1,7 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/arsnebula/nebula-dialog)
+[![Gitter chat](https://badges.gitter.im/org.png)](https://gitter.im/arsnebula/webcomponents)
 
-[![Build Status](https://saucelabs.com/browser-matrix/arsnebula.svg)](https://saucelabs.com/beta/builds/807e16594ec143128dad51d1b5b4b3d6)
+[![Build Status](https://saucelabs.com/browser-matrix/arsnebula.svg)](https://saucelabs.com/beta/builds/841ef48bdae141df8743c690157b8eac)
 
 # \<nebula-dialog\>
 
@@ -11,7 +12,7 @@ A web component to display modal dialogs.
 * Declare a dialog in markup, or use the included behavior/stylesheet to build your own
 * Easily styled with style attributes or with CSS variables and mixins
 
-> Warning: This element utilizes features of [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) which may not be supported by all browsers. To ensure support by all browsers, consider using the [Core-js Polyfill](https://github.com/zloirock/core-js).
+> Warning: This element requires browser support for [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). To ensure support by all browsers, use a promise polyfill such as [PolymerLabs Promise Polyfill](https://github.com/PolymerLabs/promise-polyfill).
 
 ## Installation
 
@@ -43,9 +44,8 @@ To create a custom dialog element, use the `nebula-dialog-behavior` and `nebula-
 ```html
 <dom-module id="my-dialog">
   <template>
-    <style include="nebula-dialog-styles">
-    </style>
-    <div class="dialog"></div>
+    <style include="nebula-dialog-styles"></style>
+    <slot></slot>
   </template >
   <script>
     Polymer({

@@ -5,29 +5,44 @@
     <title>nebula-dialog</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../core.js/client/shim.min.js"></script>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../promise-polyfill/promise-polyfill-lite.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../nebula-dialog.html">
-    <style is="custom-style" include="demo-pages-shared-styles">
-      .dialog {
-        background-color: black;
-        color: white;
-        padding: 8px;
-        text-align: center;
-        border: 1px solid springgreen;
-      }
-      .dialog button {
-        display: block;
-        cursor: pointer;
-        color: white;
-        background-color: transparent;
-        border: 1px solid white;
-        margin-top: 8px;
-        width: 100%;
-      }    
-    </style>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        alert {
+          background-color: black;
+          color: white;
+          text-align: center;
+          border: 1px solid dimgrey;
+          width: 200px;
+        }
+        alert [title] {
+          font-size: 1.2rem;
+          background-color: #333;
+          padding: 8px;
+        }
+        alert [message] {
+          background-color: transparent;
+          margin: 8px 0;
+          padding: 8px;
+        }
+        alert [buttons] {
+          padding: 8px;
+        }
+        alert button {
+          display: block;
+          cursor: pointer;
+          color: white;
+          background-color: transparent;
+          padding: 8px 16px;
+          border: 1px solid white;
+          width: 100%;
+        }
+      </style>
+    </custom-style>  
   </head>
   <body>
 
@@ -36,10 +51,13 @@
       <demo-snippet>
         <template is="dom-bind" id="demo">
           <nebula-dialog id="dialog">
-            <div class="dialog">
-              <div>One ugly dialog!</div>
-              <button on-tap="close">OK</button>
-            </div>
+            <alert>
+              <div title>Alert</div>
+              <div message>Would you like to start a dialog?</div>
+              <div buttons>
+                <button on-tap="close">OK</button>
+              </div>
+            </alert>
           </nebula-dialog>
           <button on-tap="show">Show Dialog</button>
         </template>

@@ -83,13 +83,6 @@ This code may be used under the terms found in LICENSE.md of this repository.
       'tap': '__dialogOnTap'
     },
     /**
-    * Lifecycle event handler triggered when the element has been initialized.
-    */
-    ready: function() {
-      // create dynamic bound event handlers
-      this.__dialogOnKeyDown = this.__dialogOnKeyDown.bind(this)
-    },
-    /**
     * Lifecycle handler triggered when a key is pressed down.
     * The handler is added and removed automatically when a element is opened and closed.
     */ 
@@ -128,13 +121,14 @@ This code may be used under the terms found in LICENSE.md of this repository.
     * Property observer triggered when the value of `opened` is changed.
     */
     __dialogOnOpenedChanged: function(opened) {
+      if (opened === void(0)) return
       if (opened) {
         this.__dialogActiveElement = document.activeElement
         this.set('result', void(0))
-        document.addEventListener('keydown', this.__dialogOnKeyDown)
+        this.listen(document.body, 'keydown', '__dialogOnKeyDown')
       } else {
         if (this.__dialogActiveElement) this.__dialogActiveElement.focus()
-        document.removeEventListener('keydown', this.__dialogOnKeyDown)
+        this.unlisten(document.body, 'keydown', '__dialogOnKeyDown')
       }
     },
     /**

@@ -13,9 +13,6 @@ A stylesheet to use when building your own custom dialogs with `nebula-dialog-be
   <template>
     <style>
       :host {
-        --nebula-dialog-backdrop-color: hsla(0, 0%, 0%, 0.6);
-        --nebula-dialog-transition-duration: 0.25s;
-        --nebula-dialog-z-index: 9999;
         position: fixed;
         display: -ms-flexbox;
         display: -webkit-flex;
@@ -36,22 +33,24 @@ A stylesheet to use when building your own custom dialogs with `nebula-dialog-be
         margin: 0;
         padding: 0;
         border: 0;
-        background-color: var(--nebula-dialog-backdrop-color);
-        z-index: var(--nebula-dialog-z-index);
+        background-color: var(--nebula-dialog-backdrop-color, var(--nebula-ui-backdrop-color, hsla(0, 0%, 0%, 0.6)));
+        z-index: 9998;
         visibility: hidden;
         opacity: 0;
-        transition: opacity var(--nebula-dialog-transition-duration) linear, visibility 0s linear var(--nebula-dialog-transition-duration);
+        transition: opacity var(--nebula-dialog-transition-duration, 0.25s) linear, visibility 0s linear var(--nebula-dialog-transition-duration, 0.25s);
+        @apply --nebula-dialog;
       }
-      .dialog {
+      :host ::slotted(*) {
         transform: scale(0.9);
-        transition: transform var(--nebula-dialog-transition-duration) ease-in-out;
+        transition: transform var(--nebula-dialog-transition-duration, 0.25s) ease-in-out;
       }
       :host([opened]) {
         visibility: visible;
         opacity: 1;
-        transition: opacity var(--nebula-dialog-transition-duration) linear;
+        transition: opacity var(--nebula-dialog-transition-duration, 0.25s) linear;
+        @apply --nebula-dialog-opened;
       }
-      :host([opened]) .dialog {
+      :host([opened]) ::slotted(*) {
         transform: scale(1);
       }
     </style>
