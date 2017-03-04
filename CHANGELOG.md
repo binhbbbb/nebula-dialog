@@ -1,5 +1,9 @@
 # Change Log
 
+## [v1.1.2](https://github.com/arsnebula/nebula-dialog/releases/tag/v1.1.2) (2017-03-03)
+
+- Fixed malformed bower file.
+
 ## [v1.1.1](https://github.com/arsnebula/nebula-dialog/releases/tag/v1.1.1) (2017-03-03)
 
 - Fixed defect with styles applying to slotted rather than host targeted tag.
