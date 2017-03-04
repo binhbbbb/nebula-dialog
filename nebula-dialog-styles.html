@@ -7,7 +7,27 @@ This code may be used under the terms found in LICENSE.md of this repository.
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-A stylesheet to use when building your own custom dialogs with `nebula-dialog-behavior`.
+A stylesheet to use when building your own custom dialogs with `nebula-dialog-behavior`. The styles expect you to have a container element representing your dialog content with an id of `dialog`.
+
+```html
+<dom-module id="nebula-dialog">
+  <template>
+    <style include="nebula-dialog-styles"></style>
+    <div id="dialog">
+      <slot></slot>
+    </div>
+   </template>
+   <script>
+    Polymer({
+      is: 'nebula-dialog',
+      behaviors: [
+        Nebula.DialogBehavior
+      ]
+    })
+  </script>
+</dom-module>
+```
+
 -->
 <dom-module id="nebula-dialog-styles">
   <template>
@@ -40,7 +60,7 @@ A stylesheet to use when building your own custom dialogs with `nebula-dialog-be
         transition: opacity var(--nebula-dialog-transition-duration, 0.25s) linear, visibility 0s linear var(--nebula-dialog-transition-duration, 0.25s);
         @apply --nebula-dialog;
       }
-      :host ::slotted(*) {
+      :host #dialog {
         transform: scale(0.9);
         transition: transform var(--nebula-dialog-transition-duration, 0.25s) ease-in-out;
       }
@@ -50,7 +70,7 @@ A stylesheet to use when building your own custom dialogs with `nebula-dialog-be
         transition: opacity var(--nebula-dialog-transition-duration, 0.25s) linear;
         @apply --nebula-dialog-opened;
       }
-      :host([opened]) ::slotted(*) {
+      :host([opened]) #dialog {
         transform: scale(1);
       }
     </style>

@@ -65,8 +65,10 @@ Custom property | Description
         @apply --nebula-dialog;
       }
     </style>
-    <slot></slot>
-  </template >
+    <div id="dialog">
+      <slot></slot>
+    </div>
+  </template>
   <script>
     Polymer({
       is: 'nebula-dialog',

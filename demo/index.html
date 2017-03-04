@@ -12,27 +12,27 @@
     <link rel="import" href="../nebula-dialog.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
-        alert {
+        #alert {
           background-color: black;
           color: white;
           text-align: center;
           border: 1px solid dimgrey;
           width: 200px;
         }
-        alert [title] {
+        #alert [title] {
           font-size: 1.2rem;
           background-color: #333;
           padding: 8px;
         }
-        alert [message] {
+        #alert [message] {
           background-color: transparent;
           margin: 8px 0;
           padding: 8px;
         }
-        alert [buttons] {
+        #alert [buttons] {
           padding: 8px;
         }
-        alert button {
+        #alert button {
           display: block;
           cursor: pointer;
           color: white;
@@ -51,13 +51,13 @@
       <demo-snippet>
         <template is="dom-bind" id="demo">
           <nebula-dialog id="dialog">
-            <alert>
+            <div id="alert">
               <div title>Alert</div>
               <div message>Would you like to start a dialog?</div>
               <div buttons>
                 <button on-tap="close">OK</button>
               </div>
-            </alert>
+            </div>
           </nebula-dialog>
           <button on-tap="show">Show Dialog</button>
         </template>
