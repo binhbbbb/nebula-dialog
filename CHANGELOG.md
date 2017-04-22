@@ -1,5 +1,9 @@
 # Change Log
 
+## [v2.0.0](https://github.com/arsnebula/nebula-dialog/releases/tag/v2.0.0) (2017-04-22)
+
+- Upgraded to Polymer v2 ES2016 class-style element and mixin.
+
 ## [v1.1.2](https://github.com/arsnebula/nebula-dialog/releases/tag/v1.1.2) (2017-03-03)
 
 - Fixed malformed bower file.
