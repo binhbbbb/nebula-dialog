@@ -16,13 +16,13 @@ The following demonstrates common properties and event handlers:
 <nebula-dialog
   id="dialog"
   opened="{{opened}}"
-  result="{{result}}"
   on-closed="_onClosed"
   on-opened="_onOpened">
+  <!-- place content to display here -->
 </nebula-dialog>
 ```
 
-By default, the dialog visibility is hidden. To open the dialog you can set the `opened` property to `true` or `false`. You can also use the `show` method which returns a promise that resolves when the dialog is closed or canceled.
+By default, the dialog display is set to `none`. To open the dialog you can set the `opened` property to `true` or `false`. You can also use the `show` method which returns a promise that resolves when the dialog is closed or canceled.
 
 ```js
   this.$.dialog.show().then(function(result) {
@@ -32,7 +32,12 @@ By default, the dialog visibility is hidden. To open the dialog you can set the 
 
 ## Style
 
-The dialog can be styled using standard CSS properties.
+The dialog can be styled using standard CSS properties, and the following variables:
+
+Custom property | Description | Default
+:--- | :--- | :---
+`--nebula-dialog-backdrop-color` | The background color of the base element. | hsla(0, 0%, 0%, 0.6)
+`--nebula-dialog-animation-duration` | The duration of the animation. | 250ms
 
 The element also inherits default values from the following global theme styles. If a global theme variable has not been set, it will use the local default.
 

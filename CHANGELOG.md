@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2.0.1](https://github.com/arsnebula/nebula-dialog/releases/tag/v2.0.1) (2017-05-15)
+
+- Refactored from transitions to animations to support 'display:none'.
+- Added animate attribute to allow styling animation easier.
+- Added variable to set duration of animation.
+
 ## [v2.0.0](https://github.com/arsnebula/nebula-dialog/releases/tag/v2.0.0) (2017-04-22)
 
 - Upgraded to Polymer v2 ES2016 class-style element and mixin.

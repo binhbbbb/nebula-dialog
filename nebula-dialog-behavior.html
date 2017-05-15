@@ -6,7 +6,7 @@
   window.Nebula = window.Nebula || {}
 
   // symbols for private members
-  const onTransitionEnd = Symbol()
+  const onAnimationEnd = Symbol()
   const onClick = Symbol()
   const onKeyDown = Symbol()
   const onOpenedChanged = Symbol()
@@ -18,7 +18,6 @@
   const listen = Symbol.for('Nebula.ElementMixin.listen')
   const unlisten = Symbol.for('Nebula.ElementMixin.unlisten')
   const observe = Symbol.for('Nebula.ElementMixin.observe')
-  const compute = Symbol.for('Nebula.ElementMixin.compute')
   const fire = Symbol.for('Nebula.ElementMixin.fire')
 
   /**
@@ -40,6 +39,7 @@
         return {
           allowCancel: {
             type: Boolean,
+            reflectToAttribute: true,
             value: true
           },
           opened: {
@@ -60,7 +60,7 @@
         this.setAttribute('role', 'alert')
         this[observe]('opened',  this[onOpenedChanged])
         this[listen](this, 'click', this[onClick])
-        this[listen](this, 'transitionend', this[onTransitionEnd])
+        this[listen](this, 'animationend', this[onAnimationEnd])
       }
 
       /**
@@ -68,7 +68,7 @@
       * The handler is added and removed automatically when a element is opened and closed.
       */ 
       [onKeyDown](e) {
-        if (e.key === 'Escape' && this.allowCancel) {
+        if (e.key.toLowerCase() === 'escape' && this.allowCancel) {
           e.preventDefault()
           this.cancel()
         }
@@ -79,7 +79,7 @@
       * The element is automatically closed.
       */
       [onClick](e) {
-        if (this.allowCancel) {
+        if (e.target === this && this.allowCancel) {
           e.preventDefault()
           e.stopPropagation()
           this.cancel()
@@ -89,13 +89,12 @@
       /**
       * Event handler triggered when opening and closing animation is complete.
       */
-      [onTransitionEnd](e) {
-        if (e.propertyName === 'opacity') {
-          if (this.opened) {
-            this[fire]('opened')
-          } else {
-            this[fire]('closed')
-          }
+      [onAnimationEnd](e) {
+        if (this.opened) {
+          this[fire]('opened')
+        } else {
+          this.removeAttribute('animate')
+          this[fire]('closed')
         }
       }
 
@@ -106,14 +105,16 @@
         if (opened === void(0)) return
         if (opened) {
           this[activeElement] = document.activeElement
-          this.set('result', void(0))
           this[listen](document.body, 'keydown', this[onKeyDown])
+          this.set('result', void(0))
+          this.setAttribute('animate', 'enter')
         } else {
           if (this[activeElement]) {
             this[activeElement].focus()
             delete this[activeElement]
           }
           this[unlisten](document.body, 'keydown')
+          this.setAttribute('animate', 'exit')
         }
       }
 
@@ -169,11 +170,7 @@
             }
             this[listen](this, 'closed', handler)
 
-            // open the element in a timeout closure to accomodate for animation
-            // when appending new element
-            setTimeout(() => {
-              this.set('opened', true)
-            })
+            this.set('opened', true)
           } catch(error) {
             reject(error)
           }

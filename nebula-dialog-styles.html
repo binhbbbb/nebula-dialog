@@ -3,10 +3,25 @@
 <dom-module id="nebula-dialog-styles">
   <template>
     <style>
+      @keyframes dialogEnter {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes dialogExit {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      @keyframes dialogSlotEnter {
+        from { transform: scale(0.9); }
+        to { transform: scale(1.0); }
+      }
+      @keyframes dialogSlotExit {
+        from { transform: scale(1.0); }
+        to { transform: scale(0.9); }
+      }
       :host {
         position: fixed;
-        display: -webkit-flex;
-        display: flex;
+        display: none;
         -webkit-flex-direction: column;
         flex-direction: column;        
         -webkit-align-items: center;
@@ -20,23 +35,31 @@
         margin: 0;
         padding: 0;
         border: 0;
-        background-color: var(--nebula-ui-backdrop-color, hsla(0, 0%, 0%, 0.6));
+        background-color: var(--nebula-ui-backdrop-color, var(--nebula-dialog-backdrop-color, hsla(0, 0%, 0%, 0.6)));
         z-index: 9998;
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.25s linear, visibility 0s linear 0.25s;
+        display: none;
       }
-      :host #dialog {
-        transform: scale(0.9);
-        transition: transform 0.25s ease-in-out;
+      :host([allow-cancel]) {
+        cursor: pointer;
       }
-      :host([opened]) {
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 0.25s linear;
+      :host > * {
+        cursor: default;
       }
-      :host([opened]) #dialog {
-        transform: scale(1);
+      :host([animate]) {
+        display: -webkit-flex;
+        display: flex;
+      }
+      :host([animate=enter]) {
+        animation: dialogEnter var(--nebula-dialog-animation-duration, 250ms);        
+      }
+      :host([animate=exit]) {
+        animation: dialogExit var(--nebula-dialog-animation-duration, 250ms);  
+      }
+      :host([animate=enter]) > * {
+        animation: dialogSlotEnter var(--nebula-dialog-animation-duration, 250ms);
+      }
+      :host([animate=exit]) > * {
+        animation: dialogSlotExit var(--nebula-dialog-animation-duration, 250ms);
       }
     </style>
   </template>
