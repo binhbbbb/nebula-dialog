@@ -1,5 +1,9 @@
 # Change Log
 
+## [v2.0.2](https://github.com/arsnebula/nebula-dialog/releases/tag/v2.0.2) (2017-05-22)
+
+- Removed manual documentation and updated inline comments for generated API documentation.
+
 ## [v2.0.1](https://github.com/arsnebula/nebula-dialog/releases/tag/v2.0.1) (2017-05-15)
 
 - Refactored from transitions to animations to support 'display:none'.

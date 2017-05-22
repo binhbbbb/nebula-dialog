@@ -25,8 +25,7 @@
   ],
   "main": "nebula-dialog.html",
   "pages": {
-    "nebula-dialog-behavior": "docs/nebula-dialog-behavior",
-    "nebula-dialog": "docs/nebula-dialog"
+    "nebula-dialog-behavior": "docs/nebula-dialog-behavior.md"
   },
   "demos": {
     "Demo": "demo/index.html"
