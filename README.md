@@ -1,3 +1,5 @@
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/arsnebulanebula-dialog)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/arsnebulanebula-dialog.svg)](https://vaadin.com/directory/component/arsnebulanebula-dialog)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/arsnebula/nebula-dialog)
 [![Polymer Version](https://img.shields.io/badge/polymer-v2-blue.svg)](https://www.polymer-project.org)
 [![Sauce Labs Build Status](https://img.shields.io/badge/saucelabs-passing-red.svg)](https://saucelabs.com/beta/builds/5b1c0b2360e44569ae01a8b75d0a6ddc)
